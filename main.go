@@ -29,7 +29,7 @@ func newApp(f *os.File) *app {
 // your ssh key password stored under 'ssh' branch
 // in this "pass" utility
 func (a *app) pass(key string) string {
-	key = fmt.Sprintf("ssh/%s", key)
+	key = fmt.Sprintf("SSH/%s", key)
 	passCmd := exec.Command("pass", key)
 	passCmd.Stderr = a.errorLog.Writer()
 	pass, err := passCmd.Output()
