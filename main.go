@@ -24,13 +24,13 @@ func newApp(f *os.File) *app {
 }
 
 // pass gets the specified ssh key password from
-// cmd line unix utility called "pass".
+// cmd line unix utility called "gopass".
 // Also there is an assumption that you have
-// your ssh key password stored under 'ssh' branch
-// in this "pass" utility
+// your ssh key password stored under 'SSH' branch
+// in this utility.
 func (a *app) pass(key string) string {
 	key = fmt.Sprintf("SSH/%s", key)
-	passCmd := exec.Command("pass", key)
+	passCmd := exec.Command("gopass", "show", "-n", "-o", key)
 	passCmd.Stderr = a.errorLog.Writer()
 	pass, err := passCmd.Output()
 	if err != nil {
